@@ -14,6 +14,26 @@ public class StoreToRent {
     private String minimumLeasePeriod;
     private String floorNumber;
     private boolean available;
+    private final double INTEREST_RATE = 0.25;
+    private boolean loanRequired;
+    private double loanAmount;
+    private int loanPaymentTerm;
+
+    public double getINTEREST_RATE() {
+        return INTEREST_RATE;
+    }
+
+    public boolean isLoanRequired() {
+        return loanRequired;
+    }
+
+    public double getLoanAmount() {
+        return loanAmount;
+    }
+
+    public int getLoanPaymentTerm() {
+        return loanPaymentTerm;
+    }
 
     public String getStoreName() {
         return storeName;
@@ -103,6 +123,18 @@ public class StoreToRent {
         input.close();
         
     }
+
+    public double calculateLoanFinancing() {
+        if (loanRequired) {
+            return (loanAmount * (1 + INTEREST_RATE)) / loanPaymentTerm;
+        }
+        return 0;
+    }
+
+    public String toString() {
+        return "\nStore Name: " + this.storeName + "\nStore Business: " + this.storeBusiness + "\nTotal Area (sq.m): " + this.totalArea + "\nSelling Price: €" + this.sellingPrice + "\nRent: €" + this.rent + "\nMinimum Lease Period: " + this.minimumLeasePeriod + "\nFloor Number: " + this.floorNumber + "\nMaintenance Cost: €" + MAINTENANCE_COST + "\nAvailable: " + this.available + "\n";
+    }
+    
 
     @Override
     public String toString() {
